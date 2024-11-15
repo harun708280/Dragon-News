@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   FaFacebook,
   FaGithub,
@@ -10,20 +10,35 @@ import classPng from "./class.png";
 import swimming from "./swimming.png";
 import playground from "./playground.png";
 import video from './What.mp4'
+import { AuthUserContext } from "../../Firebase/AuthContext";
 const RightSite = () => {
+  const {user,googleLogin,gitHubLogin}=useContext(AuthUserContext)
+  const handleGithub=()=>{
+    gitHubLogin()
+    .then(result=>{
+      console.log(result.message);
+      
+    })
+    .catch(err=>{
+      console.log(err.message);
+      
+    })
+  }
   return (
     <div>
-      <div className="w-full">
+      {
+        !user && <div className="w-full">
         <h1 className="text-xl font-bold">Login With </h1>
         <div className="space-y-3 mt-3">
-          <button className="w-full flex items-center justify-center  border-2 p-1 rounded-lg border-blue-600 text-blue-600 gap-4 hover:bg-blue-600 hover:text-white">
+          <button onClick={googleLogin} className="w-full flex items-center justify-center  border-2 p-1 rounded-lg border-blue-600 text-blue-600 gap-4 hover:bg-blue-600 hover:text-white">
             <FaGoogle></FaGoogle> Login With Google
           </button>
-          <button className="w-full flex items-center justify-center border-2  border-black p-1 rounded-lg hover:bg-black hover:text-white">
+          <button onClick={handleGithub} className="w-full flex items-center justify-center border-2  border-black p-1 rounded-lg hover:bg-black hover:text-white">
             <FaGithub></FaGithub> Login With Github
           </button>
         </div>
       </div>
+      }
       <div className="my-5">
         <h1 className="text-lg font-bold">Find Us On</h1>
         <div className="">

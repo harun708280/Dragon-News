@@ -17,7 +17,7 @@ const Details = () => {
               <img className="w-full h-[411px]" src={data.image_url} alt="" />
               <h1 className="text-3xl w-10/12 font-medium">{data.title}</h1>
               <p>{data.details}</p>
-              <button onClick={()=>navigate(-1)} className="bg-[#D72050] flex items-center py-2 px-7 space-x-3 text-white">
+              <button onClick={()=>navigate(`/category/${data.category_id}`)} className="bg-[#D72050] flex items-center py-2 px-7 space-x-3 text-white">
                 <span>
                   <FaArrowLeftLong></FaArrowLeftLong>
                 </span>{" "}
